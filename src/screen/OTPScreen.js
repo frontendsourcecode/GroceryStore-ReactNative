@@ -118,21 +118,13 @@ class OTPScreen extends Component {
     const {mobile} = this.state;
     const scrollEnabled = this.state.screenHeight > Dimension.window.height;
     return (
-      <KeyboardAvoidingView
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-        style={styles.container}>
-        <ScrollView
-          style={styles.scrollView}
-          contentContainerStyle={styles.scrollview}
-          scrollEnabled={scrollEnabled}
-          onContentSizeChange={this.onContentSizeChange}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps={'always'}>
-          <View style={styles.container}>
-            <AppStatusBar
+      <View style={{  backgroundColor:Color.white, flex:1 }}>
+         <AppStatusBar
               backgroundColor={Color.white}
               barStyle="light-content"
             />
+        <ScrollView>
+          <View style={styles.container}>
             <View style={styles.imageContainer}>
               <Image
                 source={require('../assets/images/mail_box_img.png')}
@@ -217,7 +209,7 @@ class OTPScreen extends Component {
           closeInterval={5000}
           inactiveStatusBarBackgroundColor={Color.colorPrimary}
         />
-      </KeyboardAvoidingView>
+      </View>
     );
   }
 }
