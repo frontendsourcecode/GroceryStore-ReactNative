@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, FlatList, Image, Text} from 'react-native';
 import UserInput from '../../components/UserInput';
 import {Color, Fonts, Strings, Dimension} from '../../theme';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';import Icon from 'react-native-vector-icons/Feather';
 import {CategoryImage} from '../../axios/ServerRequest';
 
 class SearchBar extends Component {

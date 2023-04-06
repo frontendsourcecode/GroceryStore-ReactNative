@@ -3,8 +3,8 @@ import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';
@@ -15,6 +15,8 @@ import {
   setCart,
   setProductItem,
 } from '../utils/LocalStorage';
+import {BASE_URL} from '../axios/API';
+import RenderHTML from 'react-native-render-html';
 class ProductView extends Component {
   constructor(props) {
     super(props);
@@ -108,15 +110,15 @@ class ProductView extends Component {
                 <Image
                   style={styles.productImage}
                   source={{
-                    uri: `${ProductImage + productItem.image}`,
+                    uri: `${BASE_URL + productItem.images[0].image}`,
                   }}
                 />
               </View>
 
               <View style={styles.box2}>
-                <TouchableOpacity style={styles.favoriteContainer}>
+                {/* <TouchableOpacity style={styles.favoriteContainer}>
                   <Icon name="heart" size={20} color={Color.colorPrimary} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
             <View style={styles.contentContainer}>
@@ -128,7 +130,13 @@ class ProductView extends Component {
                   productItem.price}
               </Text>
               <Text style={styles.title}>{productItem.name}</Text>
-              <Text style={styles.description}>{productItem.description}</Text>
+              <Text style={styles.description}>
+                <RenderHTML
+                  source={{
+                    html: productItem.description,
+                  }}
+                />
+              </Text>
               {count > 0 ? (
                 <View style={styles.quantity}>
                   <TouchableOpacity

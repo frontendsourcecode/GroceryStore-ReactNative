@@ -127,12 +127,12 @@ class RegisterScreen extends Component {
     userRegister(name, mobile, password)
       .then(response => {
         let data = response.data;
-        if (data.code === 201) {
-          this.showToast(data.status);
-          setUserDetails(response.data.userData);
+        if (data.status === 201) {
+          this.showToast(data.message);
+          setUserDetails(data.data);
           this.props.navigation.replace('OTP');
         } else {
-          this.showToast(data.status);
+          this.showToast(data.message);
         }
 
         this.setState({loading: false});

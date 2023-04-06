@@ -34,8 +34,7 @@ export const userLogin = async (mobile, password) => {
 
 export const userRegister = async (name, mobile, password) => {
   const body = {
-    fname: name,
-    lname: '',
+    name: name,
     mobile: mobile,
     password: password,
   };
@@ -50,7 +49,7 @@ export const userRegister = async (name, mobile, password) => {
 export const getAllCategory = async () => {
   return await API({
     method: 'POST',
-    url: 'api/v1/allcategory',
+    url: 'api/v1/categories',
     data: {token: await getToken()},
   }).then(res => {
     return res;
@@ -59,12 +58,29 @@ export const getAllCategory = async () => {
 export const getNewProducts = async () => {
   return await API({
     method: 'POST',
-    url: 'api/v1/newProduct',
+    url: 'api/v1/newProducts',
     data: {token: await getToken()},
   }).then(res => {
     return res;
   });
 };
+export const getBanners = async () => {
+  return await API({
+    method: 'GET',
+    url: 'api/v1/banners',
+  }).then(res => {
+    return res;
+  });
+};
+export const getOffers = async () => {
+  return await API({
+    method: 'GET',
+    url: 'api/v1/offers',
+  }).then(res => {
+    return res;
+  });
+};
+
 export const getPopularProducts = async () => {
   return await API({
     method: 'POST',
@@ -85,10 +101,30 @@ export const getProductList = async categoryName => {
   });
 };
 
+export const getProductByCategory = async id => {
+  return await API({
+    method: 'POST',
+    url: 'api/v1/category/products',
+    data: {token: await getToken(), category_id: id},
+  }).then(res => {
+    return res;
+  });
+};
+
+export const getProductBySubCategory = async id => {
+  return await API({
+    method: 'POST',
+    url: 'api/v1/sub-category/products',
+    data: {token: await getToken(), category_id: id},
+  }).then(res => {
+    return res;
+  });
+};
+
 export const updateUser = async user => {
   return await API({
     method: 'POST',
-    url: 'api/v1/updateUser',
+    url: 'api/v1/update_user',
     data: user,
   }).then(res => {
     return res;
@@ -106,7 +142,7 @@ export const searchProduct = async text => {
 export const orderPlace = async orderDetails => {
   return await API({
     method: 'Post',
-    url: 'api/v1/placeorder',
+    url: 'api/v1/placeOrder',
     data: orderDetails,
   }).then(res => {
     return res;

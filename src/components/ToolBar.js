@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import {styles} from './styles/styles.js';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 function ToolBar(props) {
   return (

@@ -10,8 +10,7 @@ import {
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';import Icon from 'react-native-vector-icons/Feather';
 import {getUserDetails, getCart, setCart} from '../utils/LocalStorage';
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';
@@ -57,25 +56,26 @@ class PlaceOrder extends Component {
     let orderitems = [];
     for (let i = 0; i < cartList.length; i++) {
       orderItem = {
-        id: cartList[i].item.id,
-        itemname: cartList[i].item.name,
-        itemquantity: cartList[i].count,
+        itemName: cartList[i].item.name,
+        itemQuantity: cartList[i].count,
         attribute: cartList[i].item.attribute,
         currency: cartList[i].item.currency,
         itemImage: cartList[i].item.image,
-        itemprice: cartList[i].item.price,
-        itemtotal: cartList[i].subTotal,
+        itemPrice: cartList[i].item.price,
+        itemTotal: cartList[i].subTotal,
       };
       orderitems.push(orderItem);
     }
 
     let orderDetails = {
       token: user.token,
-      fname: user.fname,
-      lname: '',
+      name: user.name,
+      email: user.email,
       mobile: user.mobile,
-      area: user.city,
-      address: ` ${user.address},  ${user.city},  ${user.state}- ${user.zip}`,
+      city: user.city,
+      address: user.address,
+      state: user.state,
+      zip_code: user.zip_code,
       user_id: user.id,
       orderitems: orderitems,
     };
@@ -137,7 +137,7 @@ class PlaceOrder extends Component {
                   marginBottom: 10,
                 }}>
                 <Text style={styles.title}>SubTotal : </Text>
-                <Text style={styles.title}>{this.state.totalPrice}</Text>
+                <Text style={styles.title}>Rs.{this.state.totalPrice}</Text>
               </View>
 
               <View
@@ -150,7 +150,7 @@ class PlaceOrder extends Component {
                   marginBottom: 10,
                 }}>
                 <Text style={styles.title}>Shipping Charges : </Text>
-                <Text style={styles.title}>0.0</Text>
+                <Text style={styles.title}>Rs.0.0</Text>
               </View>
               <View
                 style={{
@@ -170,7 +170,7 @@ class PlaceOrder extends Component {
                   marginBottom: 10,
                 }}>
                 <Text style={styles.title}>Total Amount : </Text>
-                <Text style={styles.title}>{this.state.totalPrice}</Text>
+                <Text style={styles.title}>Rs.{this.state.totalPrice}</Text>
               </View>
             </View>
           </ScrollView>

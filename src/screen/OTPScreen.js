@@ -21,7 +21,6 @@ import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import Validator from '../utils/Validator/Validator';
 import {DEFAULT_RULE, PHONE_RULE} from '../utils/Validator/rule';
 import {checkInternetConnection} from '../axios/ServerRequest';
-import {NavigationActions} from 'react-navigation';
 
 import DropdownAlert from 'react-native-dropdownalert';
 

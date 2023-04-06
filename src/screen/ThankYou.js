@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, BackHandler} from 'react-native';
 import thankyou from '../assets/images/thankyou.png';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import AppStatusBar from '../components/AppStatusBar';
+import {CommonActions} from '@react-navigation/native';
 
 class ThankYou extends Component {
   constructor(props) {
@@ -12,6 +13,9 @@ class ThankYou extends Component {
 
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.backAction);
+    setTimeout(() => {
+      this.resetBack();
+    }, 2000);
   }
 
   componentWillUnmount() {
@@ -20,6 +24,15 @@ class ThankYou extends Component {
 
   backAction = () => {
     this.props.navigation.replace('HomeScreen');
+  };
+
+  resetBack = () => {
+    this.props.navigation.dispatch(
+      CommonActions.reset({
+        index: 1,
+        routes: [{name: 'HomeScreen'}],
+      }),
+    );
   };
 
   render() {

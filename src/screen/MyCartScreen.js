@@ -12,8 +12,7 @@ import {
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';import Icon from 'react-native-vector-icons/Feather';
 import {getUserDetails, getCart, setCart} from '../utils/LocalStorage';
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';
@@ -112,7 +111,7 @@ class MyCartScreen extends Component {
           <View style={styles.box2}>
             <View style={{width: '50%'}}>
               <Text style={styles.total_price}>
-                Total: {this.state.totalPrice}
+                Total: RS. {this.state.totalPrice}
               </Text>
             </View>
             <View style={{width: '50%'}}>

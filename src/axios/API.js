@@ -1,6 +1,6 @@
 import axios from 'axios';
-//const URL = 'http://192.168.1.101/grocerystore/';
- const URL = 'https://megagrocerystore.000webhostapp.com/';
+const URL = 'http://192.168.210.150/grocerystore/';
+//  const URL = 'https://freshmart.frontendsourcecode.com/';
 export const BASE_URL = URL;
 
 const API = async config => {

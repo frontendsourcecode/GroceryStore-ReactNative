@@ -40,7 +40,7 @@ class AddressScreen extends Component {
       user: user,
       id: user.id,
       phone: user.mobile,
-      name: user.fname,
+      name: user.name,
       email: user.email,
       address: user.address,
       city: user.city,
@@ -116,7 +116,7 @@ class AddressScreen extends Component {
       .then(response => {
         let data = response.data;
         console.log(response);
-        if (data.code === 200) {
+        if (data.status === 200) {
           this.props.navigation.navigate('PlaceOrder');
           setUserDetails(user);
         }
@@ -164,12 +164,12 @@ class AddressScreen extends Component {
                 value={this.state.phone}
                 maxLength={50}
                 editable={false}
-                value={this.state.phone}
               />
               <UserInput
                 placeholder={Strings.emailHint}
                 value={this.state.email}
                 error={this.state.emailError}
+                autoFocus={true}
                 onChangeText={email => {
                   this.setState({
                     email,

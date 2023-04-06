@@ -16,7 +16,7 @@ import {Color, Fonts, Strings, Dimension} from '../theme';
 import Card from '../components/Card';
 import UserInput from '../components/UserInput';
 import LoadingButton from '../components/LoadingButton';
-import Icon from 'react-native-feather1s';
+import Icon from 'react-native-vector-icons/Feather';
 import Logo from '../components/Logo';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import Validator from '../utils/Validator/Validator';

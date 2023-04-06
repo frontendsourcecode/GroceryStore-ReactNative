@@ -10,8 +10,7 @@ import {
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';import Icon from 'react-native-vector-icons/Feather';
 import {getUserDetails, getCart} from '../utils/LocalStorage';
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';
@@ -67,7 +66,7 @@ class ProfileScreen extends Component {
           </View>
           <View style={styles.userRow}>
             <Text>Name : </Text>
-            <Text>{user ? user.fname : null}</Text>
+            <Text>{user ? user.name : null}</Text>
           </View>
           <View style={styles.border} />
           <View style={styles.userRow}>

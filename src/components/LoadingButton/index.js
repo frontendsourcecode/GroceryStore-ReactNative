@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {View, Button, StyleSheet, Text, ActivityIndicator} from 'react-native';
 import Color from '../../theme/Color';
 import Font from '../../theme/Fonts';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import {TouchableOpacity} from 'react-native';
 function LoadingButton(props) {
   return (
     <View>
