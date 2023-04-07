@@ -23,9 +23,8 @@ import Validator from '../utils/Validator/Validator';
 import {DEFAULT_RULE, PHONE_RULE, PASSWORD_RULE} from '../utils/Validator/rule';
 import Toast from 'react-native-simple-toast';
 import {setUserDetails} from '../utils/LocalStorage';
-import firebase from "react-native-firebase";
 const defaultHandler = global.ErrorUtils.getGlobalHandler()
-const crashlytics = firebase.crashlytics()
+
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
@@ -42,10 +41,6 @@ class LoginScreen extends Component {
 
   componentDidMount = () => {
     checkInternetConnection();
-    // firebase.crashlytics().enableCrashlyticsCollection();
-    // firebase.crashlytics().log('Testing crash');
-    // firebase.crashlytics.crash();
-    //crashlytics.crash();
   };
 
   onChangeMobile(text) {
@@ -99,12 +94,12 @@ class LoginScreen extends Component {
       .then(response => {
         let data = response.data;
         console.log(response.data);
-        if (data.code === 200) {
-          this.showToast(data.status);
-          setUserDetails(response.data.userData);
+        if (data.status === 200) {
+          this.showToast(data.message);
+          setUserDetails(data.data);
           this.props.navigation.replace('HomeScreen');
         } else {
-          this.showToast(data.status);
+          this.showToast(data.message);
         }
         this.setState({loading: false});
       })

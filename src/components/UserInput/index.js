@@ -30,6 +30,7 @@ function UserInput(props) {
         editable={props.editable}
         onBlur={onBlur}
         onFocus={onFocus}
+        autoFocus={props.autoFocus}
       />
       <View
         style={[

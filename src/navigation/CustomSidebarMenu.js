@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {CommonActions} from '@react-navigation/native';
 
 import {Image, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Icon from 'react-native-feather1s';
+import Icon from 'react-native-vector-icons/Feather';
 import Color from '../theme/Color';
 import Font from '../theme/Fonts';
 import {getUserDetails, logout} from '../utils/LocalStorage';
@@ -29,11 +29,7 @@ export default class CustomSidebarMenu extends Component {
                 navOptionName: 'My Profile',
                 screenToNavigate: 'Profile',
             },
-            {
-                navOptionThumb: 'grid',
-                navOptionName: 'Category',
-                screenToNavigate: 'Category',
-            },
+            
             {
                 navOptionThumb: 'gift',
                 navOptionName: 'My Offers',
@@ -102,7 +98,7 @@ export default class CustomSidebarMenu extends Component {
                             style={styles.sideMenuProfileIcon}
                         />
                         {this.state.user !== null ? (
-                            <Text style={styles.title}>{this.state.user.fname}</Text>
+                            <Text style={styles.title}>{this.state.user.name}</Text>
                         ) : null}
                     </View>
 

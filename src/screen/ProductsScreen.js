@@ -13,22 +13,28 @@ import {Color, Fonts, Strings, Dimension} from '../theme';
 
 import ToolBar from '../components/ToolBar';
 
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icon from 'react-native-feather1s';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import BadgeIcon from '../components/BadgeIcon';
 import BannerSlider from '../components/BannerSlider';
-import {getProductList} from '../axios/ServerRequest';
+import {
+  getProductByCategory,
+  getProductBySubCategory,
+  getProductList,
+} from '../axios/ServerRequest';
 import {getUserDetails, getCart, setCart} from '../utils/LocalStorage';
 import ProductRow from '../components/ProductItem/ProductRow';
 import Cart from '../utils/Cart';
 import Loading from '../components/Loading';
 import EmptyProduct from '../assets/images/emptyproduct.png';
+import DummyImage from '../assets/images/image.png';
 
 class ProductsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       categoryData: [],
+      subcategoryData: [],
       products: [],
       selected: false,
       cartCount: 0,
@@ -44,30 +50,71 @@ class ProductsScreen extends Component {
   }
 
   init = async () => {
-    this.fetchProductsList(this.props.route.params.item.categry);
+    // this.fetchProductsList(this.props.route.params.item.category);
     let cart = await getCart();
 
+    console.log('Category===================>', this.props.route.params.item);
+
     this.setState({
-      cartList: await getCart(),
+      cartList: cart,
       cartCount: Cart.getTotalCartCount(cart),
-      category: this.props.route.params.item.categry,
+      category: this.props.route.params.item.category,
+      subcategoryData: this.props.route.params.item.subCategory,
     });
+
+    if (
+      this.props.route.params.item.subCategory &&
+      this.props.route.params.item.subCategory.length > 0
+    ) {
+      this.fetchProductBySubCategory(
+        this.props.route.params.item.subCategory[0].id,
+      );
+    } else {
+      this.fetchProductByCategory(this.props.route.params.item.id);
+    }
   };
 
-  fetchProductsList = category => {
+  fetchProductBySubCategory = async id => {
     this.refs.loading.show();
-
-    getProductList(category)
-      .then(response => {
-        console.log(response.data.products);
-        this.setState({products: response.data.products});
+    await getProductBySubCategory(id)
+      .then(res => {
+        console.log(res.data);
+        this.setState({products: res.data.products});
         this.refs.loading.close();
       })
-      .catch(error => {
-        console.log(error);
+      .catch(err => {
+        console.log(err);
         this.refs.loading.close();
       });
   };
+  fetchProductByCategory = async id => {
+    this.refs.loading.show();
+    await getProductByCategory(id)
+      .then(res => {
+        console.log(res.data);
+        this.setState({products: res.data.products});
+        this.refs.loading.close();
+      })
+      .catch(err => {
+        console.log(err);
+        this.refs.loading.close();
+      });
+  };
+
+  // fetchProductsList = category => {
+  //   this.refs.loading.show();
+
+  //   getProductList(category)
+  //     .then(response => {
+  //       console.log(response.data.products);
+  //       this.setState({products: response.data.products});
+  //       this.refs.loading.close();
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //       this.refs.loading.close();
+  //     });
+  // };
 
   addToCart = async params => {
     let cart = await getCart();
@@ -115,6 +162,23 @@ class ProductsScreen extends Component {
     );
   }
 
+  renderSubcategoryItem(item) {
+    return (
+      <TouchableOpacity
+        style={{marginTop: 10}}
+        onPress={() => {
+          this.fetchProductBySubCategory(item.id);
+        }}>
+        <View style={styles.card}>
+          <Image style={{height: 40, width: 40}} source={DummyImage} />
+          <Text style={{fontSize: 10}} numberOfLines={2} ellipsizeMode="tail">
+            {item.sub_category_title}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+
   render() {
     const {navigation} = this.props;
 
@@ -137,16 +201,48 @@ class ProductsScreen extends Component {
             }}
           />
         </ToolBar>
-        <View style={{paddingLeft: 10, paddingRight: 10, marginBottom: 100}}>
-          <FlatList
+        <View style={{marginBottom: 100}}>
+          <View style={{display: 'flex', flexDirection: 'row'}}>
+            <View
+              style={{
+                width: 90,
+                backgroundColor: '#f2f2f2',
+                height: Dimension.window.height,
+                padding: 2,
+                alignItems: 'center',
+              }}>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={this.state.subcategoryData}
+                renderItem={({item, index}) =>
+                  this.renderSubcategoryItem(item, index)
+                }
+                keyExtractor={item => item.id}
+                extraData={this.state}
+              />
+            </View>
+            <View style={{flex: 1}}>
+              <FlatList
+                showsVerticalScrollIndicator={false}
+                data={this.state.products}
+                renderItem={({item, index}) =>
+                  this.renderProductItem(item, index)
+                }
+                keyExtractor={item => item.id}
+                extraData={this.state}
+              />
+            </View>
+          </View>
+
+          {/* <FlatList
             showsVerticalScrollIndicator={false}
             key={'flatlist1'}
             data={this.state.products}
             renderItem={({item, index}) => this.renderProductItem(item, index)}
             keyExtractor={item => item.id}
             extraData={this.state}
-          />
-          {this.state.products.length == 0 ? (
+          /> */}
+          {/* {this.state.products.length == 0 ? (
             <View
               style={{
                 flex: 1,
@@ -158,7 +254,7 @@ class ProductsScreen extends Component {
               </View>
               <Text style={styles.title}>Empty Product</Text>
             </View>
-          ) : null}
+          ) : null} */}
         </View>
         <Loading ref="loading" indicatorColor={Color.colorPrimary} />
       </View>
@@ -193,6 +289,17 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.primarySemiBold,
     fontSize: 20,
     marginBottom: 10,
+  },
+  card: {
+    width: 70,
+    height: 70,
+    padding: 5,
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

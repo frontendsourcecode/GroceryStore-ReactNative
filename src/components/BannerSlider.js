@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import ViewSlider from '../components/ViewSlider';
 import Dimension from '../theme/Dimension';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native';
 import Color from '../theme/Color';
 import Fonts from '../theme/Fonts';
 import Strings from '../theme/Strings';
+import {BASE_URL} from '../axios/API';
 const {width, height} = Dimension.window;
 
 function BannerSlider(props) {
@@ -13,43 +14,26 @@ function BannerSlider(props) {
     <ViewSlider
       renderSlides={
         <>
-          <View style={styles.viewBox}>
-            <TouchableOpacity onPress={() => alert('hii')}>
-              <Image
-                style={styles.bannerImage}
-                source={{
-                  uri: 'https://paytm.com/offers/img/addmoneyupiMob.jpg',
-                }}
-                style={{height: 200, width}}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.viewBox}>
-            <Image
-              style={styles.bannerImage}
-              source={{
-                uri:
-                  'https://images-eu.ssl-images-amazon.com/images/G/31/img17/Pantry/MARCH_2020/SVD_Teaser/Desktop_Teaser_Header.jpg',
-              }}
-              style={{height: 200, width}}
-            />
-          </View>
-          <View style={styles.viewBox}>
-            <Image
-              style={styles.bannerImage}
-              source={{
-                uri:
-                  'https://dog55574plkkx.cloudfront.net/images/big-bazaar-todays-offers.png',
-              }}
-              style={{height: 200, width}}
-            />
-          </View>
+          {props.banners.map((item, index) => {
+            return (
+              <View style={styles.viewBox} key={index}>
+                <TouchableOpacity
+                  onPress={() => console.log(BASE_URL + item.image)}>
+                  <Image
+                    style={{height: 200, width}}
+                    source={{
+                      uri: BASE_URL + item.image,
+                    }}
+                  />
+                </TouchableOpacity>
+              </View>
+            );
+          })}
         </>
       }
       style={styles.slider} //Main slider container style
       height={180} //Height of your slider
-      slideCount={3} //How many views you are adding to slide
+      slideCount={props.banners.length} //How many views you are adding to slide
       dots={true} // Pagination dots visibility true for visibile
       dotActiveColor={Color.colorPrimary} //Pagination dot active color
       dotInactiveColor={Color.gray} // Pagination do inactive color

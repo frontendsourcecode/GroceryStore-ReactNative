@@ -54,7 +54,7 @@ export default {
   home: 'Home',
   categories: 'Categories',
   settings: 'Settings',
-
+  zipHint:'Enter zipcode',
   // App intro sliders
   slide1Title: 'SAMPLE TITLE 1',
   slide1Text: 'This is sample description 1',

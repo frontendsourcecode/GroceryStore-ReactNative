@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Icon from 'react-native-feather1s';
+import Icon from 'react-native-vector-icons/Feather';
 import Color from '../theme/Color';
 
-import {TouchableOpacity} from 'react-native-gesture-handler';
-function BadgeIcon(props) {
+import {TouchableOpacity} from 'react-native';function BadgeIcon(props) {
   return (
     <TouchableOpacity
       onPress={props.onPress}

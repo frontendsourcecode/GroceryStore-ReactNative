@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import {Color, Fonts, Strings, Dimension} from '../../theme';
 import {ProductImage} from '../../axios/ServerRequest';
+import { BASE_URL } from '../../axios/API';
 
 class OrderItem extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class OrderItem extends Component {
             <Image
               style={styles.productImage}
               source={{
-                uri: `${ProductImage + item.image}`,
+                uri: `${BASE_URL + item.images[0].image}`,
               }}
             />
           </View>

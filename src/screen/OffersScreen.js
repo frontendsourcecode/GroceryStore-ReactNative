@@ -3,39 +3,19 @@ import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import {TouchableOpacity} from 'react-native';
 import {getCart} from '../utils/LocalStorage';
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';
+import {getOffers} from '../axios/ServerRequest';
+import {BASE_URL} from '../axios/API';
+import Loading from '../components/Loading';
 class OffersScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cartCount: 0,
-      offer: [
-        {
-          id: 1,
-          image:
-            'https://images.financialexpress.com/2018/02/jio_cashback_offer.jpg',
-        },
-        {
-          id: 2,
-          image:
-            'https://cdn.zeebiz.com/sites/default/files/styles/zeebiz_850x478/public/2018/11/01/58125-paytm-sale.jpg?itok=lJh9ZYIg',
-        },
-        {
-          id: 3,
-          image:
-            'https://www.themobileindian.com/public/thumbs/news/2018/10/23967/paytm_425_735.jpg',
-        },
-        {id: 4, image: 'https://pbs.twimg.com/media/DMOxAQeUEAE9s5a.jpg'},
-        {
-          id: 5,
-          image:
-            'https://www.goindigo.in/content/dam/indigov2/6e-website/header/campaigns/2019/09/Federal-Bank-Cashback-offer-Responsive-landing-page-banner-new.jpg',
-        },
-      ],
+      offers: [],
     };
   }
 
@@ -52,6 +32,21 @@ class OffersScreen extends Component {
     this.setState({
       cartCount: Cart.getTotalCartCount(cart),
     });
+    this.fetchOffers();
+  };
+
+  fetchOffers = () => {
+    this.refs.loading.show();
+    getOffers()
+      .then(response => {
+        // console.log('offers====>', response.data);
+        this.setState({offers: response.data.offers});
+        this.refs.loading.close();
+      })
+      .catch(error => {
+        console.log(error);
+        this.refs.loading.close();
+      });
   };
 
   renderOfferItem = (item, index) => {
@@ -59,7 +54,7 @@ class OffersScreen extends Component {
       <View style={styles.offerItem}>
         <Image
           source={{
-            uri: item.image,
+            uri: BASE_URL + item.image,
           }}
           style={styles.cover}
         />
@@ -83,10 +78,11 @@ class OffersScreen extends Component {
         </ToolBar>
 
         <FlatList
-          data={this.state.offer}
+          data={this.state.offers}
           renderItem={({item, index}) => this.renderOfferItem(item, index)}
           keyExtractor={item => item.id}
         />
+        <Loading ref="loading" indicatorColor={Color.colorPrimary} />
       </View>
     );
   }

@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import {Color, Fonts, Strings, Dimension} from '../../theme';
 import {ProductImage} from '../../axios/ServerRequest';
-import Icon from 'react-native-feather1s';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/Feather';
+import {TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
+import {BASE_URL} from '../../axios/API';
 class ProductItem extends Component {
   constructor(props) {
     super(props);
@@ -45,7 +46,7 @@ class ProductItem extends Component {
               <Image
                 style={styles.productImage}
                 source={{
-                  uri: `${ProductImage + item.image}`,
+                  uri: `${BASE_URL + item.images[0].image}`,
                 }}
               />
             </TouchableOpacity>
@@ -54,7 +55,9 @@ class ProductItem extends Component {
           <View
             style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
             <TouchableOpacity activeOpacity={1} onPress={this.props.onPress}>
-              <Text style={styles.title}>{item.name}</Text>
+              <Text style={styles.title} ellipsizeMode="tail" numberOfLines={2}>
+                {item.name}
+              </Text>
 
               <Text style={styles.option}>
                 {item.attribute + ' - ' + item.currency + ' ' + item.price}
@@ -116,9 +119,9 @@ class ProductItem extends Component {
           </View>
         </View>
         <View style={styles.box2}>
-          <TouchableOpacity activeOpacity={1} style={styles.favoriteContainer}>
+          {/* <TouchableOpacity activeOpacity={1} style={styles.favoriteContainer}>
             <Icon name="heart" size={20} color={Color.colorPrimary} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );

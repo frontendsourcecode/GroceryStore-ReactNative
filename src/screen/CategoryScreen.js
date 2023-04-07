@@ -3,8 +3,7 @@ import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-
+import {TouchableOpacity} from 'react-native';
 import {getCart} from '../utils/LocalStorage';
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';

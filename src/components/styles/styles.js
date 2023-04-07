@@ -13,10 +13,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   toolbarTitle: {
-    fontSize: 20,
+    fontSize: 16,
     color: Colors.white,
     fontWeight: '700',
-
     marginRight: 20,
   },
   androidButtonText: {
