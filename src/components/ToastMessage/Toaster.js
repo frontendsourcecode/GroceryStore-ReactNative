@@ -1,30 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import Toast from './Toast'
 
-const messageType = PropTypes.shape({
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  styles: PropTypes.object,
-  duration: PropTypes.number,
-  height: PropTypes.number
-})
 
 const noop = () => 0
 
 // Inspired by https://github.com/dabit3/react-native-toasts
 class Toaster extends Component {
-  static propTypes = {
-    message: PropTypes.oneOfType([messageType, PropTypes.arrayOf(messageType)]),
-    onShow: PropTypes.func,
-    onHide: PropTypes.func,
-    onPress: PropTypes.func
-  }
 
-  static defaultProps = {
-    onShow: noop,
-    onHide: noop,
-    onPress: noop
-  }
+
 
   constructor (props) {
     super(props)

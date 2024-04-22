@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {View, ViewPropTypes} from 'react-native';
-import PropTypes from 'prop-types';
 
 import Popup from '../Popup';
 
@@ -19,13 +18,6 @@ class Root extends Component {
   }
 }
 
-Root.propTypes = {
-  ...ViewPropTypes,
-  style: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.number,
-    PropTypes.array,
-  ]),
-};
+
 
 export default Root;

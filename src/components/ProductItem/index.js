@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import {Color, Fonts, Strings, Dimension} from '../../theme';
 import {ProductImage} from '../../axios/ServerRequest';
 import Icon from 'react-native-vector-icons/Feather';
-import {TouchableOpacity} from 'react-native';import PropTypes from 'prop-types';
+import {TouchableOpacity} from 'react-native';
 import { BASE_URL } from '../../axios/API';
 class ProductItem extends Component {
   constructor(props) {
@@ -105,11 +105,7 @@ class ProductItem extends Component {
   }
 }
 
-ProductItem.propTypes = {
-  addToCart: PropTypes.func,
-  item: PropTypes.object,
-  count: PropTypes.number,
-};
+
 
 const styles = StyleSheet.create({
   container: {

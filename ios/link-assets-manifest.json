@@ -2,44 +2,36 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "src/assets/fonts/Jost-Black.ttf",
-      "sha1": "89d1e3d1c18465f17ff6c1f3c9e97661543c4177"
+      "path": "src/assets/fonts/feather1s.ttf",
+      "sha1": "aa86fd4ad427f5b98a1c7b80e2737191125b9e2b"
     },
     {
-      "path": "src/assets/fonts/Jost-Bold.ttf",
-      "sha1": "15c306309ab5e093c973fab0ba1ef88a7012cc2d"
+      "path": "src/assets/fonts/Poppins-Black.ttf",
+      "sha1": "6b1dd041c24de51d8859c4d83909c35c099a8219"
     },
     {
-      "path": "src/assets/fonts/Jost-ExtraBold.ttf",
-      "sha1": "87f508a395ce233b60598404f9cc3a744453ed09"
+      "path": "src/assets/fonts/Poppins-Bold.ttf",
+      "sha1": "f68e7e93da3f4a710d28b0ee5f744b5112351401"
     },
     {
-      "path": "src/assets/fonts/Jost-ExtraLight.ttf",
-      "sha1": "54be3cc77c6549782292202b0027781060fe24ee"
+      "path": "src/assets/fonts/Poppins-Light.ttf",
+      "sha1": "987ef3e07d6361fbb658624e297750133f2343bd"
     },
     {
-      "path": "src/assets/fonts/Jost-Italic.ttf",
-      "sha1": "cca49a78a93aba6b1afc4cb35ce33662b49caa26"
+      "path": "src/assets/fonts/Poppins-Medium.ttf",
+      "sha1": "72b668cb1639c6b0588c6fffa1ae9a967409e8ae"
     },
     {
-      "path": "src/assets/fonts/Jost-Light.ttf",
-      "sha1": "0a74ba8a7ed541d221586110aab21dfd5a3abd94"
+      "path": "src/assets/fonts/Poppins-Regular.ttf",
+      "sha1": "a4ef48c17479236fea2197b9a68bf7c6163e0388"
     },
     {
-      "path": "src/assets/fonts/Jost-Medium.ttf",
-      "sha1": "7e9d55841807a5eeb3ba6a1dfb0607b8a72742c7"
+      "path": "src/assets/fonts/Poppins-SemiBold.ttf",
+      "sha1": "e1a01a240fb449797ac08a37490d59b61a059e6d"
     },
     {
-      "path": "src/assets/fonts/Jost-Regular.ttf",
-      "sha1": "b22e9ed8eb939a7d7f4c4044f94e981ff57818e6"
-    },
-    {
-      "path": "src/assets/fonts/Jost-SemiBold.ttf",
-      "sha1": "04165a9fe78bef66820e3c57dd19cb9b40bcbd88"
-    },
-    {
-      "path": "src/assets/fonts/Jost-Thin.ttf",
-      "sha1": "906c920f0fd99d4032bffa25fab8f261471c47a5"
+      "path": "src/assets/fonts/Poppins-Thin.ttf",
+      "sha1": "561e8929100d5e1b8e6bba314ef1e59c22906eba"
     }
   ]
 }

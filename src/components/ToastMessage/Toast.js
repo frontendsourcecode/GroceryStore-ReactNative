@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import {
   Animated,
   TouchableWithoutFeedback,
@@ -11,25 +10,9 @@ import ToastStyles from './ToastStyles'
 const noop = () => 0
 
 class Toast extends Component {
-  static propTypes = {
-    id: PropTypes.string.isRequired,
-    text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-    styles: PropTypes.object,
-    duration: PropTypes.number,
-    height: PropTypes.number,
-    onShow: PropTypes.func,
-    onHide: PropTypes.func,
-    onPress: PropTypes.func
-  }
 
-  static defaultProps = {
-    styles: ToastStyles.info,
-    duration: 3000,
-    height: 100,
-    onShow: noop,
-    onHide: noop,
-    onPress: noop
-  }
+
+
 
   state = { animatedValue: new Animated.Value(0), timeoutId: null }
 
