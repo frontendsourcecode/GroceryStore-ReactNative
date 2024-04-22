@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {
   View,
   StyleSheet,
@@ -12,27 +11,7 @@ import {
 export default class Loading extends Component {
   static EasingType = Easing;
 
-  static propTypes = {
-    image: PropTypes.any,
-    backgroundColor: PropTypes.string,
-    borderRadius: PropTypes.number,
-    size: PropTypes.number,
-    imageSize: PropTypes.number,
-    indicatorColor: PropTypes.string,
-    easing: PropTypes.func,
-    loading: PropTypes.bool,
-  };
 
-  static defaultProps = {
-    image: null,
-    backgroundColor: '#ffffffF2',
-    borderRadius: 5,
-    size: 70,
-    imageSize: 40,
-    indicatorColor: 'gray',
-    easing: Easing.ease,
-    loading: null,
-  };
 
   constructor(props) {
     super(props);

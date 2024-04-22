@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity, ScrollView} from 'react-native-gesture-handler';
+import {TouchableOpacity, ScrollView} from 'react-native';
 import {getUserDetails} from '../utils/LocalStorage';
 import UserInput from '../components/UserInput';
 import LoadingButton from '../components/LoadingButton';

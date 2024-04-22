@@ -12,7 +12,8 @@ import {Color, Fonts, Strings, Dimension} from '../theme';
 
 import ToolBar from '../components/ToolBar';
 
-import {TouchableOpacity} from 'react-native';import Icon from 'react-native-vector-icons/Feather';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import BadgeIcon from '../components/BadgeIcon';
 import BannerSlider from '../components/BannerSlider';
 import {getNewProducts} from '../axios/ServerRequest';

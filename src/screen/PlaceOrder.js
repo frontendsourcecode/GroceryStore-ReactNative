@@ -10,7 +10,8 @@ import {
 import AppStatusBar from '../components/AppStatusBar';
 import {Color, Fonts, Strings, Dimension} from '../theme';
 import ToolBar from '../components/ToolBar';
-import {TouchableOpacity} from 'react-native';import Icon from 'react-native-vector-icons/Feather';
+import {TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import {getUserDetails, getCart, setCart} from '../utils/LocalStorage';
 import BadgeIcon from '../components/BadgeIcon';
 import Cart from '../utils/Cart';
